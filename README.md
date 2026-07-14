@@ -21,5 +21,6 @@ Currently deepening my expertise in **AI agents and GenAI application architectu
 
 ## Find Me
 
+- [Portfolio](https://shankarbalachandran.netlify.app/)
 - [LinkedIn](https://linkedin.com/in/shankarbalachandran-8a001623)
 - [Blog](https://shaanob.blogspot.com)
