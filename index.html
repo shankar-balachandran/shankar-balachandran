@@ -3,390 +3,719 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>shankar@portfolio: ~ — Shankar Balachandran</title>
-  <meta name="description" content="Full-Stack ERP Engineer and Certified PMO Professional (PMP, PMI-PMOCP) with 15+ years of experience in enterprise system implementations, technical leadership, and AI-augmented development.">
+  <title>Shankar Balachandran — ERP &amp; Cloud Platform Architect</title>
+  <meta name="description" content="Platform architect with 16 years in the Openbravo/Etendo ecosystem — AWS cloud architecture, multi-tenant SaaS, enterprise SSO and ERP platform migration. Principal architect and sole engineer on a commercial cloud ERP taken live with enterprise pilot clients.">
+  <meta property="og:title" content="Shankar Balachandran — ERP &amp; Cloud Platform Architect">
+  <meta property="og:description" content="16 years in enterprise systems: Openbravo/Etendo, AWS, multi-tenant SaaS. Principal architect and sole engineer on a commercial cloud ERP.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0e14;
-      --term-bg: #0d1117;
-      --term-border: #21293a;
-      --titlebar: #161b26;
-      --text: #c9d4e3;
-      --bright: #e6edf7;
-      --green: #3fdd8d;
-      --amber: #e8bf6a;
-      --cyan: #56c8f5;
-      --magenta: #c792ea;
-      --dim: #67758c;
-      --prompt: #3fdd8d;
-      --selection: rgba(63, 221, 141, 0.25);
-      --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      --bg: #FAFAFA;
+      --surface: #FFFFFF;
+      --text: #18181B;
+      --text-soft: #3F3F46;
+      --muted: #6B7280;
+      --border: #E4E4E7;
+      --border-strong: #D4D4D8;
+      --accent: #2563EB;
+      --accent-hover: #1D4ED8;
+      --accent-soft: #EFF4FE;
+      --shadow: 0 1px 2px rgba(24, 24, 27, 0.04), 0 8px 24px rgba(24, 24, 27, 0.05);
+      --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --serif: "Fraunces", Georgia, serif;
     }
+    :root[data-theme="dark"] {
+      --bg: #0C0E12;
+      --surface: #12151B;
+      --text: #EAEDF2;
+      --text-soft: #C2C9D4;
+      --muted: #8D97A5;
+      --border: #262B34;
+      --border-strong: #333A46;
+      --accent: #7AA7F8;
+      --accent-hover: #9DBDFA;
+      --accent-soft: #182136;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0C0E12;
+        --surface: #12151B;
+        --text: #EAEDF2;
+        --text-soft: #C2C9D4;
+        --muted: #8D97A5;
+        --border: #262B34;
+        --border-strong: #333A46;
+        --accent: #7AA7F8;
+        --accent-hover: #9DBDFA;
+        --accent-soft: #182136;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+      }
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    ::selection { background: var(--selection); }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
     body {
-      font-family: var(--mono);
+      font-family: var(--sans);
       background: var(--bg);
-      background-image: radial-gradient(ellipse at 50% -20%, #101828 0%, var(--bg) 60%);
       color: var(--text);
+      font-size: 16px;
       line-height: 1.65;
-      font-size: 15px;
       -webkit-font-smoothing: antialiased;
-      padding: 2rem 1rem 3rem;
+      transition: background 0.25s ease, color 0.25s ease;
     }
-    a { color: var(--cyan); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    ::selection { background: var(--accent); color: #fff; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+    button { cursor: pointer; font-family: inherit; }
 
-    /* Terminal window */
-    .terminal {
-      max-width: 900px;
-      margin: 0 auto;
-      background: var(--term-bg);
-      border: 1px solid var(--term-border);
-      border-radius: 10px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
-      overflow: hidden;
+    .skip-link {
+      position: absolute; left: -9999px; top: 0;
+      background: var(--accent); color: #fff; padding: 0.6rem 1rem; z-index: 200;
+      border-radius: 0 0 6px 0;
     }
-    .titlebar {
-      background: var(--titlebar);
-      border-bottom: 1px solid var(--term-border);
-      padding: 0.65rem 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      position: sticky;
-      top: 0;
-      z-index: 50;
-    }
-    .dots { display: flex; gap: 7px; }
-    .dot { width: 12px; height: 12px; border-radius: 50%; }
-    .dot.r { background: #ff5f57; } .dot.y { background: #febc2e; } .dot.g { background: #28c840; }
-    .title { color: var(--dim); font-size: 0.82rem; flex: 1; text-align: center; }
-    .titlebar nav { display: flex; gap: 0.9rem; font-size: 0.78rem; }
-    .titlebar nav a { color: var(--dim); }
-    .titlebar nav a:hover { color: var(--green); text-decoration: none; }
+    .skip-link:focus { left: 0; color: #fff; }
 
-    .screen { padding: 1.8rem clamp(1rem, 4vw, 2.5rem) 2.5rem; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
 
-    /* Prompt lines */
-    .cmd {
-      margin-top: 2.6rem;
-      color: var(--bright);
-      font-weight: 600;
-      word-break: break-word;
+    /* ---------- Header ---------- */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
     }
-    .cmd:first-child { margin-top: 0.5rem; }
-    .cmd .user { color: var(--prompt); }
-    .cmd .path { color: var(--cyan); }
-    .cmd .dollar { color: var(--dim); margin: 0 0.5ch; }
-    .out { margin-top: 0.7rem; }
-    .comment { color: var(--dim); }
-    .comment::before { content: "# "; }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; padding-top: 0.9rem; padding-bottom: 0.9rem;
+    }
+    .wordmark {
+      font-family: var(--serif); font-weight: 600; font-size: 1.05rem;
+      color: var(--text); letter-spacing: 0.01em; white-space: nowrap;
+    }
+    .wordmark:hover { color: var(--text); }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; font-size: 0.9rem; font-weight: 500; }
+    .nav-links a { color: var(--text-soft); }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      background: var(--text); color: var(--bg) !important;
+      padding: 0.45rem 0.95rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600;
+      transition: opacity 0.2s ease;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+    .theme-toggle {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 8px;
+      border: 1px solid var(--border); background: transparent; color: var(--text-soft);
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+    .theme-toggle:hover { border-color: var(--border-strong); color: var(--text); }
+    .theme-toggle .sun { display: none; }
+    :root[data-theme="dark"] .theme-toggle .sun { display: block; }
+    :root[data-theme="dark"] .theme-toggle .moon { display: none; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .theme-toggle .sun { display: block; }
+      :root:not([data-theme="light"]) .theme-toggle .moon { display: none; }
+    }
+    @media (max-width: 720px) { .nav-links .hide-m { display: none; } }
 
-    /* whoami */
-    .name {
-      font-size: clamp(1.5rem, 4.5vw, 2.2rem);
-      color: var(--bright);
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      line-height: 1.25;
+    /* ---------- Hero ---------- */
+    .hero { padding: clamp(4rem, 9vw, 7rem) 0 clamp(3rem, 6vw, 4.5rem); }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6ch;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.1rem;
     }
-    .role { color: var(--green); font-size: clamp(0.95rem, 2.5vw, 1.1rem); margin-top: 0.2rem; }
-    .badges { margin-top: 0.9rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .badge {
-      border: 1px solid var(--term-border);
-      color: var(--amber);
-      padding: 0.15rem 0.6rem;
-      border-radius: 4px;
-      font-size: 0.8rem;
+    .eyebrow::before { content: ""; width: 2rem; height: 1px; background: var(--accent); }
+    h1 {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.08; letter-spacing: -0.01em;
+      max-width: 16ch;
     }
-    .summary { margin-top: 1.1rem; max-width: 68ch; color: var(--text); }
-
-    .actions { margin-top: 1.3rem; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+    .hero-lede {
+      margin-top: 1.4rem; max-width: 62ch; font-size: clamp(1rem, 1.6vw, 1.13rem);
+      color: var(--text-soft);
+    }
+    .hero-lede strong { color: var(--text); font-weight: 600; }
+    .hero-meta {
+      margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.4rem;
+      font-size: 0.88rem; color: var(--muted); font-weight: 500;
+    }
+    .hero-meta span { display: inline-flex; align-items: center; gap: 0.45rem; }
+    .hero-meta svg { color: var(--accent); flex: none; }
+    .hero-actions { margin-top: 2.2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
     .btn {
-      display: inline-block;
-      border: 1px solid var(--green);
-      color: var(--green);
-      padding: 0.45rem 1.1rem;
-      border-radius: 6px;
-      font-size: 0.88rem;
-      transition: background 0.15s, color 0.15s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.7rem 1.3rem; border-radius: 9px; font-size: 0.92rem; font-weight: 600;
+      border: 1px solid transparent; transition: all 0.2s ease;
     }
-    .btn:hover { background: var(--green); color: #08110c; text-decoration: none; }
-    .btn.alt { border-color: var(--term-border); color: var(--text); }
-    .btn.alt:hover { background: var(--term-border); color: var(--bright); }
-
-    /* stats */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 0.8rem;
-      margin-top: 1.4rem;
+    .btn-primary { background: var(--accent); color: #fff; }
+    :root[data-theme="dark"] .btn-primary { color: #0C0E12; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .btn-primary { color: #0C0E12; }
     }
-    .stat {
-      border: 1px solid var(--term-border);
-      border-radius: 6px;
-      padding: 0.8rem 1rem;
-      background: rgba(255, 255, 255, 0.015);
+    .btn-primary:hover { background: var(--accent-hover); color: #fff; transform: translateY(-1px); }
+    :root[data-theme="dark"] .btn-primary:hover { color: #0C0E12; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .btn-primary:hover { color: #0C0E12; }
     }
-    .stat .num { color: var(--green); font-size: 1.35rem; font-weight: 700; }
-    .stat .label { color: var(--dim); font-size: 0.78rem; margin-top: 0.1rem; }
+    .btn-ghost { border-color: var(--border-strong); color: var(--text); }
+    .btn-ghost:hover { border-color: var(--text); color: var(--text); transform: translateY(-1px); }
 
-    /* experience log */
-    .job { margin-top: 1.6rem; padding-left: 1.2rem; border-left: 2px solid var(--term-border); }
-    .job:first-of-type { margin-top: 1rem; }
-    .job-title { color: var(--amber); font-weight: 700; }
-    .job-meta { color: var(--dim); font-size: 0.85rem; }
-    .job-meta .period { color: var(--magenta); }
-    .job ul { list-style: none; margin-top: 0.5rem; }
-    .job li { padding-left: 1.4ch; position: relative; margin-bottom: 0.35rem; color: var(--text); }
-    .job li::before { content: "▸"; position: absolute; left: 0; color: var(--green); }
-    .job li strong { color: var(--bright); font-weight: 600; }
-
-    /* skills as ls output */
-    .skill-group { margin-top: 1.1rem; }
-    .skill-group:first-of-type { margin-top: 0.8rem; }
-    .skill-group .dir { color: var(--cyan); font-weight: 700; }
-    .chips { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.4rem; }
-    .chip {
-      border: 1px solid var(--term-border);
-      border-radius: 4px;
-      padding: 0.12rem 0.55rem;
-      font-size: 0.8rem;
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.02);
+    /* ---------- Metrics ---------- */
+    .metrics { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .metrics-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+    }
+    .metric {
+      padding: 1.8rem 1.5rem; border-right: 1px solid var(--border);
+    }
+    .metric:nth-child(3n) { border-right: none; }
+    .metric:nth-child(-n+3) { border-bottom: 1px solid var(--border); }
+    .metric .num {
+      font-family: var(--serif); font-weight: 600; font-size: clamp(1.7rem, 3.5vw, 2.3rem);
+      font-variant-numeric: tabular-nums; line-height: 1.1; color: var(--text);
+    }
+    .metric .num em { font-style: normal; color: var(--accent); }
+    .metric .lbl { margin-top: 0.4rem; font-size: 0.85rem; color: var(--muted); }
+    @media (max-width: 720px) {
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      .metric { border-right: none; border-bottom: 1px solid var(--border); padding: 1.3rem 0.5rem 1.3rem 0; }
+      .metric:nth-child(odd) { border-right: 1px solid var(--border); padding-right: 1rem; }
+      .metric:nth-child(even) { padding-left: 1.25rem; }
+      .metric:nth-last-child(-n+2) { border-bottom: none; }
     }
 
-    /* table-ish output for certs/education */
-    .rows { margin-top: 0.8rem; }
-    .row { margin-bottom: 0.7rem; }
-    .row .k { color: var(--amber); font-weight: 700; }
-    .row .v { color: var(--dim); font-size: 0.88rem; }
-
-    /* contact */
-    .contact-list { list-style: none; margin-top: 0.8rem; }
-    .contact-list li { margin-bottom: 0.45rem; }
-    .contact-list .flag { color: var(--magenta); display: inline-block; min-width: 12ch; }
-
-    /* cursor */
-    .cursor-line { margin-top: 2.8rem; color: var(--bright); }
-    .cursor {
-      display: inline-block;
-      width: 0.9ch; height: 1.1em;
-      background: var(--green);
-      vertical-align: text-bottom;
-      animation: blink 1.1s steps(1) infinite;
+    /* ---------- Sections ---------- */
+    section { padding: clamp(3.5rem, 8vw, 5.5rem) 0; }
+    .sec-head { margin-bottom: clamp(2rem, 4vw, 3rem); }
+    .sec-eyebrow {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.6rem;
     }
-    @keyframes blink { 50% { opacity: 0; } }
+    h2 {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem); line-height: 1.15; letter-spacing: -0.005em;
+    }
+    .sec-sub { margin-top: 0.8rem; max-width: 58ch; color: var(--muted); font-size: 1rem; }
+
+    /* ---------- Featured (TankSoft Pro) ---------- */
+    .featured {
+      border: 1px solid var(--border); border-radius: 16px; background: var(--surface);
+      box-shadow: var(--shadow); overflow: hidden;
+    }
+    .featured-body { padding: clamp(1.6rem, 4vw, 2.75rem); }
+    .featured-tag {
+      display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); background: var(--accent-soft);
+      border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+      padding: 0.25rem 0.7rem; border-radius: 100px; margin-bottom: 1.1rem;
+    }
+    .featured h3 {
+      font-family: var(--serif); font-weight: 600; font-size: clamp(1.4rem, 2.8vw, 1.9rem);
+      line-height: 1.2;
+    }
+    .featured-lede { margin-top: 0.9rem; color: var(--text-soft); max-width: 68ch; }
+    .layer-stack { margin-top: 1.8rem; display: grid; gap: 0; border-top: 1px solid var(--border); }
+    .layer {
+      display: grid; grid-template-columns: 200px 1fr; gap: 1rem;
+      padding: 0.95rem 0; border-bottom: 1px solid var(--border);
+    }
+    .layer:last-child { border-bottom: none; }
+    .layer .k { font-weight: 600; font-size: 0.9rem; display: flex; align-items: baseline; gap: 0.55rem; }
+    .layer .k::before { content: ""; width: 7px; height: 7px; border-radius: 2px; background: var(--accent); flex: none; position: relative; top: -1px; }
+    .layer .v { font-size: 0.92rem; color: var(--muted); }
+    @media (max-width: 640px) { .layer { grid-template-columns: 1fr; gap: 0.2rem; } }
+    .featured-outcomes {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px;
+      background: var(--border); border-top: 1px solid var(--border);
+    }
+    .outcome { background: var(--surface); padding: 1.3rem clamp(1.2rem, 3vw, 1.8rem); }
+    .outcome .num { font-family: var(--serif); font-weight: 600; font-size: 1.45rem; color: var(--accent); font-variant-numeric: tabular-nums; }
+    .outcome .lbl { font-size: 0.83rem; color: var(--muted); margin-top: 0.2rem; }
+
+    /* ---------- Expertise ---------- */
+    .expertise-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.1rem;
+    }
+    .exp-card {
+      border: 1px solid var(--border); border-radius: 12px; background: var(--surface);
+      padding: 1.4rem 1.5rem; transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .exp-card:hover { border-color: var(--border-strong); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .exp-card .icon {
+      width: 40px; height: 40px; border-radius: 9px; display: flex; align-items: center; justify-content: center;
+      background: var(--accent-soft); color: var(--accent); margin-bottom: 0.9rem;
+    }
+    .exp-card h3 { font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; }
+    .exp-card p { margin-top: 0.45rem; font-size: 0.89rem; color: var(--muted); line-height: 1.6; }
+
+    /* ---------- Experience ---------- */
+    .xp { border-left: 1px solid var(--border); margin-left: 6px; }
+    .xp-item { position: relative; padding: 0 0 clamp(2.2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 2.5rem); }
+    .xp-item:last-child { padding-bottom: 0.25rem; }
+    .xp-item::before {
+      content: ""; position: absolute; left: -6.5px; top: 8px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--bg); border: 2.5px solid var(--accent);
+    }
+    .xp-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1rem; }
+    .xp-role { font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em; }
+    .xp-period {
+      font-size: 0.8rem; font-weight: 600; color: var(--muted);
+      font-variant-numeric: tabular-nums; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .xp-org { margin-top: 0.15rem; font-size: 0.92rem; color: var(--accent); font-weight: 500; }
+    .xp-sum { margin-top: 0.7rem; color: var(--text-soft); font-size: 0.95rem; max-width: 72ch; }
+    .xp ul { margin: 0.8rem 0 0; padding: 0; list-style: none; max-width: 72ch; }
+    .xp li {
+      position: relative; padding-left: 1.35rem; margin-bottom: 0.55rem;
+      font-size: 0.92rem; color: var(--text-soft);
+    }
+    .xp li::before {
+      content: ""; position: absolute; left: 0; top: 0.6em;
+      width: 6px; height: 6px; border-radius: 2px; background: var(--border-strong);
+    }
+    .xp li strong { color: var(--text); font-weight: 600; }
+    .xp-clients { margin-top: 0.9rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .tag {
+      font-size: 0.78rem; font-weight: 500; color: var(--text-soft);
+      border: 1px solid var(--border); border-radius: 100px; padding: 0.2rem 0.7rem;
+      background: var(--surface);
+    }
+
+    /* ---------- Credentials ---------- */
+    .cred-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.1rem; }
+    .cred-card {
+      border: 1px solid var(--border); border-radius: 12px; background: var(--surface);
+      padding: 1.4rem 1.5rem;
+    }
+    .cred-card h3 {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .cred-card h3 svg { color: var(--accent); }
+    .cred-item { padding: 0.65rem 0; border-top: 1px solid var(--border); }
+    .cred-item:first-of-type { border-top: none; padding-top: 0; }
+    .cred-item .t { font-weight: 600; font-size: 0.94rem; }
+    .cred-item .d { font-size: 0.84rem; color: var(--muted); margin-top: 0.1rem; }
+
+    /* ---------- Contact ---------- */
+    .contact {
+      border: 1px solid var(--border); border-radius: 16px; background: var(--surface);
+      box-shadow: var(--shadow);
+      padding: clamp(2.2rem, 6vw, 3.5rem); text-align: center;
+    }
+    .contact h2 { max-width: 22ch; margin: 0 auto; }
+    .contact p { margin: 1rem auto 0; max-width: 52ch; color: var(--muted); }
+    .contact .hero-actions { justify-content: center; }
+    .contact-alt { margin-top: 1.6rem; font-size: 0.9rem; color: var(--muted); }
+    .contact-alt a { font-weight: 500; }
+
+    footer { border-top: 1px solid var(--border); margin-top: clamp(3rem, 7vw, 5rem); }
+    .foot {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.8rem;
+      padding-top: 1.5rem; padding-bottom: 1.5rem; font-size: 0.84rem; color: var(--muted);
+    }
+    .foot-links { display: flex; gap: 1.25rem; }
+    .foot-links a { color: var(--muted); font-weight: 500; }
+    .foot-links a:hover { color: var(--text); }
+
+    /* ---------- Reveal ---------- */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.in { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) {
-      .cursor { animation: none; }
       html { scroll-behavior: auto; }
-    }
-
-    footer {
-      max-width: 900px;
-      margin: 1.2rem auto 0;
-      text-align: center;
-      color: var(--dim);
-      font-size: 0.78rem;
-    }
-
-    @media (max-width: 640px) {
-      body { padding: 0.8rem 0.4rem 2rem; font-size: 14px; }
-      .titlebar nav { display: none; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .btn, .exp-card { transition: none; }
     }
   </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<div class="terminal">
-  <div class="titlebar">
-    <div class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
-    <span class="title">shankar@portfolio: ~ — zsh</span>
-    <nav>
-      <a href="#whoami">whoami</a>
-      <a href="#experience">experience</a>
-      <a href="#skills">skills</a>
-      <a href="#certs">certs</a>
-      <a href="#contact">contact</a>
+<header>
+  <div class="wrap nav">
+    <a class="wordmark" href="#top">Shankar&nbsp;Balachandran</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="hide-m" href="#expertise">Expertise</a>
+      <a class="hide-m" href="#experience">Experience</a>
+      <a class="hide-m" href="#credentials">Credentials</a>
+      <a class="hide-m" href="#contact">Contact</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+      <a class="nav-cta" href="Shankar-Balachandran-Resume.pdf" download>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Résumé
+      </a>
     </nav>
   </div>
+</header>
 
-  <div class="screen">
+<main id="main">
 
-    <div class="cmd" id="whoami"><span class="user">shankar@portfolio</span>:<span class="path">~</span><span class="dollar">$</span>whoami</div>
-    <div class="out">
-      <div class="name">Shankar Balachandran</div>
-      <div class="role">Full-Stack ERP Engineer &amp; Certified PMO Professional</div>
-      <div class="badges">
-        <span class="badge">PMP</span>
-        <span class="badge">PMI-PMOCP</span>
-        <span class="badge">15+ yrs</span>
-        <span class="badge">AI-augmented dev</span>
-      </div>
-      <p class="summary">
-        15+ years of experience in enterprise system implementations, technical leadership, and
-        AI-augmented development. Proven track record of delivering complex ERP projects on-time and
-        on-budget across APAC and MENA regions — combining deep technical expertise in Java, Spring Boot,
-        React.js, AWS, and PostgreSQL with strong project governance and customer success capabilities.
-      </p>
-      <div class="actions">
-        <a class="btn" href="Shankar-Balachandran-Resume.pdf" download>⬇ resume.pdf</a>
-        <a class="btn alt" href="#contact">./contact.sh</a>
-      </div>
+  <!-- Hero -->
+  <div class="wrap hero" id="top">
+    <p class="eyebrow">ERP &amp; Cloud Platform Architect</p>
+    <h1>Enterprise platforms, architected end to end.</h1>
+    <p class="hero-lede">
+      Sixteen years in enterprise systems, effectively all of it in the <strong>Openbravo&nbsp;/&nbsp;Etendo</strong> ecosystem —
+      core product engineering, implementation, customer success and platform migration.
+      Today, principal architect and <strong>sole engineer of a commercial cloud ERP (SaaS)</strong> live with
+      enterprise pilot clients: every layer designed, built and operated single-handed, from the
+      AWS production estate and enterprise SSO to the mobile application framework and analytics stack.
+    </p>
+    <div class="hero-meta">
+      <span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Bengaluru, India
+      </span>
+      <span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15a7 7 0 1 0 0-14 7 7 0 0 0 0 14Z"/><path d="m8.21 13.89-1.5 8.11 5.29-3 5.29 3-1.5-8.12"/></svg>
+        PMP &amp; PMI-PMOCP certified
+      </span>
+      <span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.5 19a4.5 4.5 0 1 0-.42-8.98 6 6 0 1 0-11.06 3.1A4 4 0 0 0 6 21h11.5a2 2 0 0 0 0-2Z" transform="translate(0 -2)"/></svg>
+        AWS · Multi-tenant SaaS
+      </span>
     </div>
-
-    <div class="cmd"><span class="user">shankar@portfolio</span>:<span class="path">~</span><span class="dollar">$</span>./stats --summary</div>
-    <div class="out stats">
-      <div class="stat"><div class="num">15+</div><div class="label">years of experience</div></div>
-      <div class="stat"><div class="num">98%</div><div class="label">on-time, on-budget delivery</div></div>
-      <div class="stat"><div class="num">15+</div><div class="label">engineers scaled &amp; led</div></div>
-      <div class="stat"><div class="num">1,000+</div><div class="label">global ERP deployments impacted</div></div>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/shankarbalachandran" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6ZM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a class="btn btn-ghost" href="https://github.com/shankar-balachandran" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+        GitHub
+      </a>
     </div>
-
-    <div class="cmd" id="experience"><span class="user">shankar@portfolio</span>:<span class="path">~</span><span class="dollar">$</span>cat experience.log</div>
-    <div class="out">
-
-      <div class="job">
-        <div class="job-title">Independent ERP &amp; Technology Consultant</div>
-        <div class="job-meta"><span class="period">Feb 2021 – Present</span> · Self-Employed · Mauritius (Remote)</div>
-        <ul>
-          <li>Deliver end-to-end full-stack solutions: <strong>PostgreSQL/Aurora</strong> databases, <strong>Java/Spring Boot</strong> backends, <strong>React.js</strong> frontends, and <strong>AWS</strong> infrastructure (EC2, S3, Lambda, IAM)</li>
-          <li>Leverage AI-native IDEs (Cursor, Kiro, Antigravity) and terminal-based LLMs (<strong>Claude Code</strong>, Codex) for accelerated ERP customization — cutting development time on complex database functions, module configurations, and multi-file refactoring</li>
-          <li>Analyzed and modified legacy PL/pgSQL functions (<strong>10,000+ lines</strong>) for Discounts &amp; Promotions enhancements using LLM tooling; AI-assisted debugging across Java, PostgreSQL, and JavaScript</li>
-          <li>Integrated LLM capabilities into Etendo ERP for intelligent product categorization, variant management, and automated QC inspection rules for tank wash operations</li>
-          <li>Strategic ERP consulting for <strong>Sharaf DG, Al Rubaiyat Group, DCI (formerly Quala), and BUT (France)</strong>; reduced bug rates by 30% through standardized development practices</li>
-        </ul>
-      </div>
-
-      <div class="job">
-        <div class="job-title">Technical Director &amp; Local Director</div>
-        <div class="job-meta"><span class="period">Oct 2014 – Feb 2021</span> · KAILAO Consulting Ltd · Ebene, Mauritius</div>
-        <ul>
-          <li>Established and led the <strong>PMO function</strong> for the Mauritius Development Center — project governance frameworks, resource planning, and delivery standards across all client engagements</li>
-          <li>Managed 5+ concurrent ERP implementation projects (Agile/Scrum, PRINCE2), achieving <strong>98% on-time, on-budget delivery</strong> and +15% client satisfaction</li>
-          <li>Scaled operations from concept to <strong>15+ engineers</strong> with full P&amp;L accountability; +25% client contribution margins</li>
-          <li>Spearheaded a Mauritius-compliant <strong>Payroll System</strong> and a <strong>Xero–Openbravo Connector</strong>, reducing manual reconciliation by 80%</li>
-        </ul>
-      </div>
-
-      <div class="job">
-        <div class="job-title">Applications Engineer</div>
-        <div class="job-meta"><span class="period">Aug 2012 – Sep 2014</span> · Openbravo · Bangalore, India</div>
-        <ul>
-          <li>Core product development on the Openbravo ERP platform, impacting <strong>1,000+ global enterprise deployments</strong></li>
-          <li>Platform features and architectural improvements contributing to a 20% reduction in critical support tickets</li>
-          <li>Agile collaboration with product and QA teams on bi-weekly sprint releases</li>
-        </ul>
-      </div>
-
-      <div class="job">
-        <div class="job-title">Senior Technical Consultant</div>
-        <div class="job-meta"><span class="period">Dec 2009 – Aug 2012</span> · Fugo Consulting Pvt. Ltd. · Chennai, India</div>
-        <ul>
-          <li>Led full-lifecycle ERP implementations specializing in <strong>Supply Chain Management</strong> and Quality Control — improved client inventory accuracy by up to 35%</li>
-          <li>Built a regulatory <strong>TDS Management System</strong> deployed to 4,000+ hospitals across India with 100% compliance</li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="cmd" id="skills"><span class="user">shankar@portfolio</span>:<span class="path">~</span><span class="dollar">$</span>ls -R skills/</div>
-    <div class="out">
-
-      <div class="skill-group">
-        <div class="dir">skills/ai-llm-tools/</div>
-        <div class="chips">
-          <span class="chip">claude-code</span><span class="chip">codex</span><span class="chip">cursor</span>
-          <span class="chip">kiro</span><span class="chip">antigravity</span><span class="chip">prompt-engineering</span>
-        </div>
-      </div>
-
-      <div class="skill-group">
-        <div class="dir">skills/full-stack/</div>
-        <div class="chips">
-          <span class="chip">java</span><span class="chip">spring-boot</span><span class="chip">react.js</span>
-          <span class="chip">rest-apis</span><span class="chip">javascript</span><span class="chip">html-css</span>
-        </div>
-      </div>
-
-      <div class="skill-group">
-        <div class="dir">skills/cloud-devops/</div>
-        <div class="chips">
-          <span class="chip">aws-ec2</span><span class="chip">aurora</span><span class="chip">s3</span>
-          <span class="chip">lambda</span><span class="chip">iam</span><span class="chip">docker</span>
-          <span class="chip">ci-cd</span><span class="chip">git</span>
-        </div>
-      </div>
-
-      <div class="skill-group">
-        <div class="dir">skills/databases/</div>
-        <div class="chips">
-          <span class="chip">postgresql</span><span class="chip">pl-pgsql</span><span class="chip">oracle</span>
-          <span class="chip">aurora-db</span><span class="chip">db-optimization</span>
-        </div>
-      </div>
-
-      <div class="skill-group">
-        <div class="dir">skills/erp-platforms/</div>
-        <div class="chips">
-          <span class="chip">openbravo</span><span class="chip">etendo</span><span class="chip">orisha-commerce</span>
-          <span class="chip">sage-x3</span><span class="chip">pos-implementations</span>
-        </div>
-      </div>
-
-      <div class="skill-group">
-        <div class="dir">skills/leadership/</div>
-        <div class="chips">
-          <span class="chip">pmo-governance</span><span class="chip">agile-scrum</span><span class="chip">prince2</span>
-          <span class="chip">jira</span><span class="chip">confluence</span>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="cmd" id="certs"><span class="user">shankar@portfolio</span>:<span class="path">~</span><span class="dollar">$</span>cat certifications.txt</div>
-    <div class="out rows">
-      <div class="row">
-        <div class="k">PMO Certified Professional (PMI-PMOCP)</div>
-        <div class="v">Project Management Institute · valid 2025 – 2028</div>
-      </div>
-      <div class="row">
-        <div class="k">Project Management Professional (PMP)</div>
-        <div class="v">Project Management Institute · valid 2020 – 2029</div>
-      </div>
-    </div>
-
-    <div class="cmd"><span class="user">shankar@portfolio</span>:<span class="path">~</span><span class="dollar">$</span>cat education.txt</div>
-    <div class="out rows">
-      <div class="row">
-        <div class="k">Master of Computer Applications (MCA)</div>
-        <div class="v">Anna University, Chennai, India · 2010</div>
-      </div>
-      <div class="row">
-        <div class="k">B.Sc. Mathematics</div>
-        <div class="v">Loyola College, Chennai, India · 2007</div>
-      </div>
-    </div>
-
-    <div class="cmd" id="contact"><span class="user">shankar@portfolio</span>:<span class="path">~</span><span class="dollar">$</span>./contact.sh --list</div>
-    <div class="out">
-      <p class="comment">open to ERP consulting engagements, technical leadership roles, and enterprise implementations</p>
-      <ul class="contact-list">
-        <li><span class="flag">--email</span> <a href="mailto:shankar.balachandran05@gmail.com">shankar.balachandran05@gmail.com</a></li>
-        <li><span class="flag">--linkedin</span> <a href="https://linkedin.com/in/shankar-balachandran" target="_blank" rel="noopener">linkedin.com/in/shankar-balachandran</a></li>
-        <li><span class="flag">--github</span> <a href="https://github.com/shankar-balachandran" target="_blank" rel="noopener">github.com/shankar-balachandran</a></li>
-        <li><span class="flag">--resume</span> <a href="Shankar-Balachandran-Resume.pdf" download>Shankar-Balachandran-Resume.pdf</a></li>
-      </ul>
-    </div>
-
-    <div class="cursor-line"><span class="user" style="color: var(--prompt)">shankar@portfolio</span>:<span class="path" style="color: var(--cyan)">~</span><span class="dollar" style="color: var(--dim)"> $ </span><span class="cursor"></span></div>
-
   </div>
-</div>
 
-<footer>© 2026 Shankar Balachandran · plain HTML/CSS, zero dependencies · exit 0</footer>
+  <!-- Metrics -->
+  <div class="metrics reveal">
+    <div class="wrap metrics-grid">
+      <div class="metric"><div class="num">16<em>+</em></div><div class="lbl">years in enterprise systems</div></div>
+      <div class="metric"><div class="num">1,000<em>+</em></div><div class="lbl">enterprise installations of the core platform I engineered on</div></div>
+      <div class="metric"><div class="num">$278K<em>/yr</em></div><div class="lbl">projected-ROI business case that secured full rollout approval</div></div>
+      <div class="metric"><div class="num">30 <em>→</em> 5 min</div><div class="lbl">order cycle time in pilot deployment</div></div>
+      <div class="metric"><div class="num">6 <em>/</em> 8 mo</div><div class="lbl">major subsystems shipped as sole engineer</div></div>
+      <div class="metric"><div class="num">98<em>%</em></div><div class="lbl">on-time, on-budget delivery running a PMO</div></div>
+    </div>
+  </div>
+
+  <!-- Featured work -->
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-eyebrow">Featured work</p>
+        <h2>One architect. Every layer.</h2>
+        <p class="sec-sub">TankSoft Pro — a commercial cloud ERP (SaaS) taken live with two enterprise pilot clients and architected for multi-site rollout.</p>
+      </div>
+      <div class="featured reveal">
+        <div class="featured-body">
+          <span class="featured-tag">TankSoft Pro · 2025 – Present</span>
+          <h3>Principal architect and sole engineer on a production cloud ERP</h3>
+          <p class="featured-lede">
+            Designed, built and operated single-handed across two production codebases — multi-tenant SaaS and
+            single-tenant isolation from one codebase, with no per-client forks, through a disciplined
+            dev → UAT → production pipeline. Passed an enterprise security audit.
+          </p>
+          <div class="layer-stack">
+            <div class="layer">
+              <div class="k">Cloud infrastructure</div>
+              <div class="v">Complete AWS estate from scratch — EC2, Aurora PostgreSQL Serverless v2, S3, Nginx/SSL, GitHub CI/CD; cost tuning, auto-pause, mount-reliability watchdogs.</div>
+            </div>
+            <div class="layer">
+              <div class="k">Security &amp; identity</div>
+              <div class="v">Keycloak SSO with OAuth2/OIDC, silent login, cross-tab logout; Cloudflare Zero Trust (ZTNA) with email OTP; rate limiting, CORS allowlisting, input validation.</div>
+            </div>
+            <div class="layer">
+              <div class="k">ERP back office</div>
+              <div class="v">Composite transactional web services (ManageOrder: Sales Order + Work Order in one call), dispute-to-credit automation, end-to-end attachment stack on S3.</div>
+            </div>
+            <div class="layer">
+              <div class="k">Mobile framework</div>
+              <div class="v">Reusable mobile-first application framework over Etendo — Work Order wizard, Manage Pictures, Sales Invoice Dispute — a product line on shared foundations.</div>
+            </div>
+            <div class="layer">
+              <div class="k">Analytics</div>
+              <div class="v">Real-time React + Cube.js + PostgreSQL module with role-based access, deliberately decoupled from the transactional core.</div>
+            </div>
+          </div>
+        </div>
+        <div class="featured-outcomes">
+          <div class="outcome"><div class="num">−40%</div><div class="lbl">duplicate data entry removed in pilot</div></div>
+          <div class="outcome"><div class="num">100+</div><div class="lbl">external vendors on the self-service portal</div></div>
+          <div class="outcome"><div class="num">−25%</div><div class="lbl">manual dispute handling</div></div>
+          <div class="outcome"><div class="num">Passed</div><div class="lbl">enterprise security audit</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expertise -->
+  <section id="expertise">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-eyebrow">Core competencies</p>
+        <h2>Depth where platforms live or die.</h2>
+      </div>
+      <div class="expertise-grid">
+        <div class="exp-card reveal">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.5 19a4.5 4.5 0 1 0-.42-8.98 6 6 0 1 0-11.06 3.1A4 4 0 0 0 6 19Z"/></svg></div>
+          <h3>Cloud Architecture (AWS)</h3>
+          <p>EC2, Aurora PostgreSQL Serverless v2, S3, Nginx/SSL termination, Docker, CI/CD — with elasticity, cost control and reliability engineering built in.</p>
+        </div>
+        <div class="exp-card reveal">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+          <h3>Platform &amp; Product Architecture</h3>
+          <p>Modular, loosely-coupled design with backward compatibility — reusable frameworks over one-off builds, foundations that last a product lifecycle.</p>
+        </div>
+        <div class="exp-card reveal">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 22a10 10 0 0 1 20 0"/><circle cx="12" cy="7" r="4"/><path d="M16.5 3.5a4 4 0 0 1 0 7"/></svg></div>
+          <h3>Tenancy &amp; Deployment</h3>
+          <p>Multi-tenant SaaS and single-tenant isolation from a single codebase with no per-client forks; isolated dev, UAT and production environments.</p>
+        </div>
+        <div class="exp-card reveal">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <h3>Auth &amp; Security</h3>
+          <p>Keycloak SSO (OAuth2/OIDC), Cloudflare Zero Trust with OTP, rate limiting, CORS allowlisting, upload safety — passed enterprise security audit.</p>
+        </div>
+        <div class="exp-card reveal">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+          <h3>API &amp; Integration</h3>
+          <p>Versioned REST/SOAP contracts, web-service decorators, composite transactional endpoints, ERP-to-mobile orchestration, D365 invoice integration.</p>
+        </div>
+        <div class="exp-card reveal">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+          <h3>Data &amp; Analytics</h3>
+          <p>PostgreSQL and PL/pgSQL at depth; Cube.js pre-aggregated analytics decoupled from the transactional core, delivered through React dashboards.</p>
+        </div>
+        <div class="exp-card reveal">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg></div>
+          <h3>ERP Platform Engineering</h3>
+          <p>Openbravo/Etendo core platform, Java, SmartClient, FlexDoc and modulescript frameworks, AD-level customisation — including two years inside Openbravo core engineering.</p>
+        </div>
+        <div class="exp-card reveal">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></div>
+          <h3>Delivery &amp; Governance</h3>
+          <p>PMP and PMI-PMOCP certified. PMO governance, Agile/Scrum, SLA definition and vendor management — 98% on-time, on-budget across 5+ concurrent programmes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-eyebrow">Professional experience</p>
+        <h2>Sixteen years on one platform, every seat at the table.</h2>
+        <p class="sec-sub">Core product engineering, implementation, customer success, migration and P&amp;L ownership — the full arc of the Openbravo/Etendo ecosystem.</p>
+      </div>
+
+      <div class="xp">
+        <div class="xp-item reveal">
+          <div class="xp-top">
+            <span class="xp-role">Founder &amp; Principal Architect</span>
+            <span class="xp-period">Feb 2021 – Present</span>
+          </div>
+          <div class="xp-org">Beaverminds — ERP modernisation &amp; AI consultancy</div>
+          <p class="xp-sum">
+            Subcontracted to Openbravo's Customer Success unit for enterprise retail accounts (2021–2023), then
+            principal engineering partner to AgilityERP (2024–present), and from 2025 principal architect and sole
+            engineer on TankSoft Pro. Worked directly with client executive teams throughout.
+          </p>
+          <ul>
+            <li>Led <strong>Openbravo-to-Etendo platform migrations</strong> across multiple client estates — assessment, module and customisation porting, and cutover — moving enterprise deployments onto a supported successor platform without rewriting them.</li>
+            <li>Reduced BUT Retail's active bug backlog from <strong>100+ to under 20</strong> and delivered a major platform version upgrade in under 60 days, restoring continuous delivery.</li>
+            <li>Designed an Oracle data consolidation pipeline for MCB Commercial Bank achieving <strong>85% consolidation</strong> of RB5 transaction flow.</li>
+            <li>Retired a legacy Spring Boot dispute portal with an in-platform app covering the full status workflow through <strong>automated credit-note issuance</strong> — removing a manual back-office step entirely.</li>
+          </ul>
+          <div class="xp-clients">
+            <span class="tag">Decathlon</span><span class="tag">BUT (France)</span><span class="tag">Al Rubaiyat Group</span>
+            <span class="tag">DCI</span><span class="tag">Indian River Transportation</span><span class="tag">Norac</span>
+            <span class="tag">MCB Bank</span><span class="tag">Sharaf DG</span><span class="tag">AgilityERP</span>
+          </div>
+        </div>
+
+        <div class="xp-item reveal">
+          <div class="xp-top">
+            <span class="xp-role">Technical Director &amp; Acting Local Director</span>
+            <span class="xp-period">Oct 2014 – Feb 2021</span>
+          </div>
+          <div class="xp-org">Kailao Consulting Limited — Ebene, Mauritius</div>
+          <p class="xp-sum">
+            Recruited by the founder to establish and run the Mauritius business unit; acting local Director
+            accountable for operations and P&amp;L.
+          </p>
+          <ul>
+            <li>Built the delivery organisation from scratch to <strong>six permanent engineers plus a contractor bench of 15</strong>, across 5+ concurrent client programmes.</li>
+            <li>Improved client contribution margins by <strong>25%</strong>; established PMO governance and sustained <strong>98% on-time, on-budget</strong> delivery.</li>
+            <li>Led 6+ end-to-end Etendo/Openbravo implementations across retail, manufacturing and services.</li>
+            <li>Architected a real-time <strong>Xero-to-Openbravo</strong> integration removing 80% of manual reconciliation, and a Mauritius-compliant payroll/HRMS module reused across clients.</li>
+          </ul>
+        </div>
+
+        <div class="xp-item reveal">
+          <div class="xp-top">
+            <span class="xp-role">Applications Engineer</span>
+            <span class="xp-period">Aug 2012 – Sep 2014</span>
+          </div>
+          <div class="xp-org">Openbravo (now Orisha) — Bangalore, India</div>
+          <p class="xp-sum">Core platform engineering team for a commercial ERP deployed across 1,000+ global enterprise installations.</p>
+          <ul>
+            <li>Shipped core platform features and architectural improvements to scalability, stability and usability across a large Java/XML codebase.</li>
+            <li>Reduced critical support tickets by <strong>20%</strong> through proactive defect resolution.</li>
+            <li>Published open-source contributions to the platform's <strong>preferences architecture and attachment model</strong> — foundations still carried by the product today.</li>
+          </ul>
+        </div>
+
+        <div class="xp-item reveal">
+          <div class="xp-top">
+            <span class="xp-role">Technical Consultant → Senior Technical Consultant</span>
+            <span class="xp-period">Dec 2009 – Aug 2012</span>
+          </div>
+          <div class="xp-org">Fugo Consulting Pvt. Ltd. — Chennai, India</div>
+          <p class="xp-sum">Openbravo ERP module and vertical development — the start of a near-continuous run on the platform.</p>
+          <ul>
+            <li>Implementation lead for an IRDA-compliant insurance claims portal serving <strong>200+ users and 300+ claims per day</strong>.</li>
+            <li>Built a centralised TDS management system spanning <strong>4,000+ hospitals</strong> with full regulatory compliance.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credentials -->
+  <section id="credentials">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-eyebrow">Credentials</p>
+        <h2>Certified, educated, mobile.</h2>
+      </div>
+      <div class="cred-grid">
+        <div class="cred-card reveal">
+          <h3>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15a7 7 0 1 0 0-14 7 7 0 0 0 0 14Z"/><path d="m8.21 13.89-1.5 8.11 5.29-3 5.29 3-1.5-8.12"/></svg>
+            Certifications
+          </h3>
+          <div class="cred-item">
+            <div class="t">Project Management Professional (PMP)</div>
+            <div class="d">Project Management Institute · 2020 – 2029</div>
+          </div>
+          <div class="cred-item">
+            <div class="t">PMO Certified Professional (PMI-PMOCP)</div>
+            <div class="d">Project Management Institute · 2025 – 2028</div>
+          </div>
+        </div>
+        <div class="cred-card reveal">
+          <h3>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5v6"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg>
+            Education
+          </h3>
+          <div class="cred-item">
+            <div class="t">Master of Computer Applications (MCA)</div>
+            <div class="d">Anna University, Chennai · 2010</div>
+          </div>
+          <div class="cred-item">
+            <div class="t">B.Sc. Mathematics</div>
+            <div class="d">Loyola College, Chennai · 2007</div>
+          </div>
+        </div>
+        <div class="cred-card reveal">
+          <h3>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            Global footprint
+          </h3>
+          <div class="cred-item">
+            <div class="t">Languages</div>
+            <div class="d">English, Tamil, Hindi · French (elementary, in progress)</div>
+          </div>
+          <div class="cred-item">
+            <div class="t">Work authorisation</div>
+            <div class="d">India · Mauritius Self-Employed Occupation Permit to 2031 · Lived &amp; worked in Mauritius 2015–2024</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact reveal">
+        <p class="sec-eyebrow">Contact</p>
+        <h2>Building or migrating an enterprise platform?</h2>
+        <p>Open to platform architecture engagements, ERP modernisation and Openbravo-to-Etendo migrations — working directly with executive teams.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="mailto:shankar.balachandran05@gmail.com">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+            shankar.balachandran05@gmail.com
+          </a>
+          <a class="btn btn-ghost" href="Shankar-Balachandran-Resume.pdf" download>Download résumé</a>
+        </div>
+        <p class="contact-alt">
+          Or connect on <a href="https://linkedin.com/in/shankarbalachandran" target="_blank" rel="noopener">LinkedIn</a> ·
+          <a href="tel:+919444869797">+91 94448 69797</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="year">2026</span> Shankar Balachandran · Bengaluru, India</span>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="https://linkedin.com/in/shankarbalachandran" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/shankar-balachandran" target="_blank" rel="noopener">GitHub</a>
+      <a href="Shankar-Balachandran-Resume.pdf" download>Résumé</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var stored = null;
+    try { stored = localStorage.getItem('theme'); } catch (e) {}
+    if (stored === 'dark' || stored === 'light') root.setAttribute('data-theme', stored);
+
+    document.getElementById('themeToggle').addEventListener('click', function () {
+      var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var current = root.getAttribute('data-theme') || (systemDark ? 'dark' : 'light');
+      var next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('in'); });
+    } else {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting || entry.boundingClientRect.top < 0) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      items.forEach(function (el) { io.observe(el); });
+    }
+  })();
+</script>
 
 </body>
 </html>
